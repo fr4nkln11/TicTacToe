@@ -31,19 +31,15 @@ class TicTacToe:
         if cell in self.cells.keys():
             if self.cells[cell] == "*":
                 return True
-            else:
-                print(f"cell has already been occupied")
-                return False
+            print("cell has already been occupied")
         else:
             print(f"'{cell}' is not a valid position")
-            return False
+
+        return False
 
     def check_board(self):
         def full():
-            if "*" not in self.cells.values():
-                return True
-            else:
-                return False
+            return "*" not in self.cells.values()
 
         if full():
             print("Draw, no more moves can be made")
@@ -69,7 +65,6 @@ class TicTacToe:
                 winner = self.cells[wcells[0]]
                 print(f"{winner} WINS the game")
                 return True
-                break
 
     def p_place(self, cell):
         if self.isValidPlace(cell):
@@ -78,19 +73,13 @@ class TicTacToe:
 
     def render_board(self):
         cords = self.cords
-        r = 1
         d = 0
         print("  a b c")
-        for x in range(0, 8, 3):
+        for r, x in enumerate(range(0, 8, 3), start=1):
             print(
-                str(r)
-                + "|{}|{}|{}".format(
-                    self.cells[cords[x]],
-                    self.cells[cords[x + 1]],
-                    self.cells[cords[x + 2]],
-                )
+                f"{str(r)}|{self.cells[cords[x]]}|{self.cells[cords[x + 1]]}|{self.cells[cords[x + 2]]}"
             )
-            r += 1
+
             d += 1
             if d != 3:
                 print(" |-+-+-")
